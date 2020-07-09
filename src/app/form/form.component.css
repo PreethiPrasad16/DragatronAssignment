@@ -1,0 +1,49 @@
+.background {
+    background-image: url(G:\Learning\Angular\dragatron\src\assets\watercolour-1325656_960_720.webp);
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    padding: 30px;
+}
+
+.heading {
+    text-align: center;
+    padding: 0px;
+}
+
+.row {
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid rgb(54, 61, 66);
+}
+
+.col {
+    line-height: 75px;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+#submitButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gridBorder {
+    border: 0.2px solid rgb(54, 61, 66)
+}
+
+.imgSize {
+    height: 100px;
+    width: 100px
+}
+
+.borderShadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 1, 1), 0 6px 20px 0 rgba(0, 0, 1, 1);
+}
+
+#searchBar {
+    float: right;
+    padding: 6px;
+}
