@@ -14,7 +14,7 @@ export class FilterPipe implements PipeTransform {
     return items;
   }   
   return items.filter(it => {
-    return ((it.itemPrice.toString().search(searchText.toLowerCase()) >= 0)|| (it.itemDescription.toLowerCase().search(searchText.toLowerCase()) >= 0));
+    return ((it.itemPrice.toString().search(searchText.toLowerCase()) >= 0)|| (it.itemDescription.toLowerCase().search(searchText.toLowerCase()) >= 0) || (it.itemName.toLowerCase().search(searchText.toLowerCase()) >= 0) || (it.itemAdditionDate.toLowerCase().search(searchText.toLowerCase()) >= 0));
   });
    
 }

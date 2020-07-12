@@ -9,19 +9,22 @@
             <div class="form-group">
                 <label for="name">Item Name : </label>
                 <input required type="text" class="form-control" #name id="name" placeholder="Enter item name" formControlName="itemName">
-
                 <small class="text-danger" *ngIf="(inputFormControl.itemName.invalid && (inputFormControl.itemName.dirty || inputFormControl.itemName.touched) )">
-            Name is required 
-             </small>
+                 Name is required 
+                </small>
             </div>
+
             <div class=" form-group">
-                <label for="image">Item Image : </label><br>
+                <label for="image">{{isForEditingImage ? 'Edit image' : 'Item Image' }}: </label><br>
+                <div *ngIf="isForEditingImage">
+                    <img [src]="imageToEdit" class="imgSize">
+                </div>
                 <input type="file" (change)="onFileChange($event)" class="form-control-file" id="image" placeholder="Upload image" required formControlName="itemImage">
             </div>
 
             <div class="form-group">
                 <label for="price">Item Price (INR) : </label>
-                <input type="number" class="form-control" id="price" placeholder="Enter item price" formControlName="itemPrice">
+                <input type="number" class="form-control" id="price" onkeypress="return event.charCode >= 48" min="0" step="1" placeholder="Enter item price" formControlName="itemPrice">
                 <small class="text-danger" *ngIf="(inputFormControl.itemPrice.invalid && (inputFormControl.itemPrice.dirty || inputFormControl.itemPrice.touched) )">
                     Please enter the price of the item
                 </small>
@@ -29,13 +32,13 @@
 
             <div class="form-group">
                 <label for="description ">Item Description : </label>
-                <input type="text" class="form-control" id="description" placeholder="Enter item Description upto 50 words" required formControlName="itemDescription" maxlength="10">
+                <input type="text" class="form-control" id="description" placeholder="Enter item Description upto 50 words" required formControlName="itemDescription" maxlength="50">
 
             </div>
 
             <div class="form-group">
                 <label for="date">Item Addition Date : </label><br>
-                <input type="date" class="form-control" readonly required formControlName="itemAdditionDate">
+                <input type="date" class="form-control" required formControlName="itemAdditionDate">
             </div>
             <div id="submitButton">
                 <button type="submit" [disabled]="!inputForm.valid" class="btn btn-success"><i class="fa fa-check-square-o"></i> Submit</button>

@@ -12,18 +12,13 @@ export class FormComponent implements OnInit {
 
     inputForm: any;
     base64Url: any;
-    itemList = [];
+    itemList: any;
     currentDate:any;
     searchText :string;
-    dataToSave: any;
-    constructor(private ngZone: NgZone) {
-      this.dataToSave = {
-        "itemName": "",
-        "itemImage": "",
-        "itemPrice": "",
-        "itemDescription": "",
-        "itemAdditionDate": ""
-      }
+    isForEditingImage: boolean = false;
+    imageToEdit:string ='';
+
+    constructor() {
       this.inputForm = new FormGroup({
         itemName: new FormControl('',Validators.required),
         itemImage: new FormControl('',Validators.required),
@@ -31,12 +26,18 @@ export class FormComponent implements OnInit {
         itemDescription: new FormControl('',Validators.required),
         itemAdditionDate: new FormControl((new Date()).toISOString().substring(0,10)),
       });
+      this.itemList = ((sessionStorage.getItem('itemForm') == undefined) || (sessionStorage.getItem('itemForm') == null)) ? [] : JSON.parse(sessionStorage.getItem('itemForm'));
+
     }
 
     ngOnInit(): void {
+    
     }
+    
 
     onFileChange(event) {
+      this.imageToEdit = '';
+      this.isForEditingImage = false;
       fileUpload(event).then((img)=>{
         this.base64Url = "data:image/png;base64,"+img.base64;
       });
@@ -46,6 +47,7 @@ export class FormComponent implements OnInit {
       this.inputForm.value.itemImage = this.base64Url;
       this.itemList.push(this.inputForm.value);
       this.sortAll();
+      sessionStorage.setItem('itemForm', JSON.stringify(this.itemList));
       this.inputForm.reset();
       this.inputForm.controls["itemAdditionDate"].setValue((new Date()).toISOString().substring(0,10));
     }
@@ -68,7 +70,10 @@ export class FormComponent implements OnInit {
     }
 
     editItem(data) {
+      this.isForEditingImage = true;
+      this.imageToEdit = data.itemImage;
       this.inputForm.controls["itemName"].setValue(data.itemName);
+      //this.inputForm.controls["itemImage"].setValue(data.itemImage);
       this.inputForm.controls["itemPrice"].setValue(data.itemPrice);
       this.inputForm.controls["itemDescription"].setValue(data.itemDescription);
       this.inputForm.controls["itemAdditionDate"].setValue(data.itemAdditionDate);
