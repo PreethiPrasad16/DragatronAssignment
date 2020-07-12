@@ -27,14 +27,11 @@ export class FormComponent implements OnInit {
         itemAdditionDate: new FormControl((new Date()).toISOString().substring(0,10)),
       });
       this.itemList = ((sessionStorage.getItem('itemForm') == undefined) || (sessionStorage.getItem('itemForm') == null)) ? [] : JSON.parse(sessionStorage.getItem('itemForm'));
-
     }
 
     ngOnInit(): void {
-    
     }
     
-
     onFileChange(event) {
       this.imageToEdit = '';
       this.isForEditingImage = false;

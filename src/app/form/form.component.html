@@ -7,7 +7,7 @@
         <!-- Input Form -->
         <form [formGroup]="inputForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
-                <label for="name">Item Name : </label>
+                <label for="name"><h6>Item Name : </h6></label>
                 <input required type="text" class="form-control" #name id="name" placeholder="Enter item name" formControlName="itemName">
                 <small class="text-danger" *ngIf="(inputFormControl.itemName.invalid && (inputFormControl.itemName.dirty || inputFormControl.itemName.touched) )">
                  Name is required 
@@ -15,7 +15,7 @@
             </div>
 
             <div class=" form-group">
-                <label for="image">{{isForEditingImage ? 'Edit image' : 'Item Image' }}: </label><br>
+                <label for="image"><h6>{{isForEditingImage ? 'Edit image' : 'Item Image' }}:</h6> </label><br>
                 <div *ngIf="isForEditingImage">
                     <img [src]="imageToEdit" class="imgSize">
                 </div>
@@ -23,7 +23,7 @@
             </div>
 
             <div class="form-group">
-                <label for="price">Item Price (INR) : </label>
+                <label for="price"><h6>Item Price (INR) : </h6></label>
                 <input type="number" class="form-control" id="price" onkeypress="return event.charCode >= 48" min="0" step="1" placeholder="Enter item price" formControlName="itemPrice">
                 <small class="text-danger" *ngIf="(inputFormControl.itemPrice.invalid && (inputFormControl.itemPrice.dirty || inputFormControl.itemPrice.touched) )">
                     Please enter the price of the item
@@ -31,13 +31,13 @@
             </div>
 
             <div class="form-group">
-                <label for="description ">Item Description : </label>
+                <label for="description "><h6>Item Description :</h6> </label>
                 <input type="text" class="form-control" id="description" placeholder="Enter item Description upto 50 words" required formControlName="itemDescription" maxlength="50">
 
             </div>
 
             <div class="form-group">
-                <label for="date">Item Addition Date : </label><br>
+                <label for="date"><h6>Item Addition Date :</h6> </label><br>
                 <input type="date" class="form-control" required formControlName="itemAdditionDate">
             </div>
             <div id="submitButton">
@@ -48,6 +48,7 @@
     </div>
     <hr>
 
+
     <!-- Delete all items or Search items in list -->
     <div class="container ">
         <button id="remove" (click)="deleteAll()" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Delete All</button>
@@ -55,10 +56,13 @@
             <input type="search" class="form-control" [(ngModel)]="searchText" placeholder="Search Item by Price">
         </div>
     </div>
-
     <hr>
 
+
     <!-- Grid to display the entered items -->
+
+    <h4 class="heading pt-1">Items List</h4>
+
     <div class="container borderShadow">
         <div class="row">
 
